@@ -29,7 +29,7 @@ def sendEmail(filenames):
 
 if __name__ == "__main__":
     try:
-        os.mkdir("SCP")
+        os.mkdir(" ") # Name of the folder
     except:
         pass
     server = " " # place the host name
@@ -43,12 +43,12 @@ if __name__ == "__main__":
     for file_name in files:
         path = "/path/to/folder/" + file_name # place the FOLDER path that you want copied
         filename = path.split('/')[-1] + ".csv"
-        scp.get(path, 'SCP/' + filename)
-        if os.stat('SCP/' + filename).st_size == 0:
-            os.remove('SCP/' + filename) # zero length file
+        scp.get(path, os.getcwd() + '/SCP/' + filename)
+        if os.stat(os.getcwd() + 'SCP/' + filename).st_size == 0:
+            os.remove(os.getcwd() + 'SCP/' + filename) # zero length file
             continue
-        local_files.append('SCP/' + filename)
+        local_files.append(os.getcwd() + 'SCP/' + filename)
     sendEmail(local_files)
     scp.close()
     for file_name in local_files:
-        os.remove('SCP/' + file_name)
+        os.remove(os.getcwd() + 'SCP/' + file_name)
