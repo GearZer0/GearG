@@ -29,7 +29,7 @@ def sendEmail(filenames):
 
 if __name__ == "__main__":
     try:
-        os.mkdir(" ") # Name of the folder
+        os.mkdir("SCP")
     except:
         pass
     server = " " # place the host name
