@@ -13,9 +13,9 @@ def createSSHClient(server, port, user, password):
 def sendEmail(filenames):
     outlook = win32com.client.Dispatch('outlook.application')
     mail = outlook.CreateItem(0)
-    mail.To = ' '
-    mail.Subject = ' '
-    mail.Body = ' '
+    mail.To = ' ' #Mail to who?
+    mail.Subject = ' ' #Email subject
+    mail.Body = ' ' #Email body
 #   mail.HTMLBody = '<h2>HTML Message body</h2>' #this field is optional
 
     # To attach file to the email (optional):
@@ -23,16 +23,16 @@ def sendEmail(filenames):
         attachment  = filename
         mail.Attachments.Add(attachment)
 
-    mail.SentOnBehalfOfName = ' '
+    mail.SentOnBehalfOfName = ' ' #send from who?
     mail.Send()
     print("Email sent ...")
 
 if __name__ == "__main__":
     try:
-        os.mkdir(" ") # folder name
+        os.mkdir("SCP") # folder name 
     except:
         pass
-    server = " " # place the host name
+    server = " " # IP address
     port = "22" # place the port
     user = " " # place the username
     password = input("Enter Password: ")
