@@ -31,9 +31,9 @@ Install the following modules :
 ### Python pip install xxxxxxxxx
 ````
 <pre>
-1. paramiko     For SSH
-2. scp          For SCP
-3. pywin32      For Outlook    
+1. paramiko           For SSH
+2. scp                For SCP
+3. pywin32            For Outlook    
 </pre>
 ````
 
