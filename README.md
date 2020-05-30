@@ -2,7 +2,7 @@
 
 AutomateSCP tool automatically copy file remotely from a server using SCP to a folder locally (i.e desktop) and then email the results.
 
-##### Break down of the automation steps
+# Break down of the automation steps
 1. Login remotely to server using SCP
 2. Input Password to the server
 3. Copy files to a local folder
@@ -22,6 +22,13 @@ Fill in the following in auto.py :
 7. files = ['a','b'] # file names on server               'Input the filename(s) of the files in the server'
 8. path = "/path/to/folder/" + file_name                  'Input the folder path of the server'
 </pre>
+
+## Requirements
+Install the following modules :
+Python pip install xxxxxxxxx
+1)paramiko
+2)scp 
+3)pywin32
 
 # Command to run this tool
 python auto.py
