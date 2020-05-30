@@ -10,6 +10,7 @@ AutomateSCP tool automatically copy file remotely from a server using SCP to a f
 4. delete file that is 0kb
 5. convert the file into .csv
 6. send email to recipient
+7. Delete all the files in local folder
 ````
 
 ## Configuration
