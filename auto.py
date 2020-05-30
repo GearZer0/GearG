@@ -36,6 +36,7 @@ if __name__ == "__main__":
     port = "22" # place the port
     user = " " # place the username
     password = input("Enter Password: ")
+    # password = "Password" # hardcode password into the script
     ssh = createSSHClient(server, port, user, password)
     scp = SCPClient(ssh.get_transport())
     files = ['a','b'] # file names on server
