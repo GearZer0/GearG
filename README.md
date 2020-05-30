@@ -30,9 +30,11 @@ Fill in the following in auto.py :
 Install the following modules :
 ### Python pip install xxxxxxxxx
 ````
-1. paramiko
-2. scp 
-3. pywin32
+<pre>
+1. paramiko     For SSH
+2. scp          For SCP
+3. pywin32      For Outlook    
+</pre>
 ````
 
 # Command to run this tool
