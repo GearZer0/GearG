@@ -25,7 +25,7 @@ Fill in the following in auto.py :
 
 ## Requirements
 Install the following modules :
-Python pip install xxxxxxxxx
+###### Python pip install xxxxxxxxx
 1. paramiko
 2. scp 
 3. pywin32
