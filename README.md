@@ -19,7 +19,7 @@ Fill in the following in auto.py :
 4. mail.SentOnBehalfOfName = ' '                          'Input email address of the sender'
 5. server = " "                                           'Input IP address of the server'
 6. user = " "                                             'Input the username of the server'
-7. files = ['a','b'] # file names on server               'Input the filename(s) of the files in the server'
+7. files = ['a','b']                                      'Input the filename(s) of the files in the server'
 8. path = "/path/to/folder/" + file_name                  'Input the folder path of the server'
 </pre>
 
