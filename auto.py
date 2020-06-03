@@ -2,20 +2,25 @@ import paramiko
 from scp import SCPClient
 import win32com.client
 import os
+from getpass import getpass
 
 def createSSHClient(server, port, user, password):
-    client = paramiko.SSHClient()
-    client.load_system_host_keys()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(server, port, user, password)
-    return client
+    try:
+        client = paramiko.SSHClient()
+        client.load_system_host_keys()
+        client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        client.connect(server, port, user, password)
+        return client
+    except paramiko.AuthenticationException:
+        print("Wrong password")
+        quit()
 
 def sendEmail(filenames):
     outlook = win32com.client.Dispatch('outlook.application')
     mail = outlook.CreateItem(0)
-    mail.To = ' ' #Mail to who?
-    mail.Subject = ' ' #Email subject
-    mail.Body = ' ' #Email body
+    mail.To = ''
+    mail.Subject = 'GTI'
+    mail.Body = 'Hi Team, Please upload for GTI'
 #   mail.HTMLBody = '<h2>HTML Message body</h2>' #this field is optional
 
     # To attach file to the email (optional):
@@ -23,26 +28,25 @@ def sendEmail(filenames):
         attachment  = filename
         mail.Attachments.Add(attachment)
 
-    mail.SentOnBehalfOfName = ' ' #send from who?
+    mail.SentOnBehalfOfName = ''
     mail.Send()
-    print("Email sent ...")
+    print("Email sent ...") 
 
 if __name__ == "__main__":
     try:
-        os.mkdir("SCP") # folder name 
+        os.mkdir("SCP") # folder name
     except:
         pass
-    server = " " # IP address
-    port = "22" # place the port
-    user = " " # place the username
-    password = input("Enter Password: ")
-    # password = "Password" 
+    server = "" # place the host name
+    port = "" # place the port
+    user = "root" # place the username
+    password = getpass()
     ssh = createSSHClient(server, port, user, password)
     scp = SCPClient(ssh.get_transport())
-    files = ['a','b'] # file names on server
+    files = [''] # file names on server
     local_files = []
     for file_name in files:
-        path = "/path/to/folder/" + file_name # place the FOLDER path that you want copied
+        path = "/root/gti_feed/tmp/" + file_name # place the FOLDER path that you want copied
         filename = path.split('/')[-1] + ".csv"
         scp.get(path, os.getcwd() + '/SCP/' + filename)
         if os.stat(os.getcwd() + '/SCP/' + filename).st_size == 0:
