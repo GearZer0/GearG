@@ -63,7 +63,7 @@ if __name__ == "__main__":
         fData = open(lf, mode='r', encoding='utf-8').read().split('\n')
         open(lf, mode='w+', encoding='utf-8').close()  # clear the file
         for da in fData:  # looping over each lines and applying rules
-            if re.findall(r'[0-255].[0-255].[0-255].[0-255]', da) == 0:  # not an ip
+            if re.findall(r'[\d]+.[\d]+.[\d]+.[\d]+', da) == 0:  # not an ip
                 with open(lf, mode='a+', encoding='utf-8') as nf:
                     da = da.replace('.', '[dot]')
                     nf.write(da + "\n")
