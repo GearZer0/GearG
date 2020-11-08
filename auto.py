@@ -49,14 +49,13 @@ if __name__ == "__main__":
     ssh = createSSHClient(server, port, user, password)
     scp = SCPClient(ssh.get_transport())
     files = ['']  # file names on server
-    for i in range(len(files)):
-        if re.findall(r'[0-255].[0-255].[0-255].[0-255]', files[i]) == 0:
-            # applying replacement job
-            files[i] = files[i].replace('.', '[dot]')
     local_files = []
     for file_name in files:
         path = "" + file_name  # place the FOLDER path that you want copied
-        filename = path.split('/')[-1] + ".csv"
+        only_name = path.split('/')[-1]
+        if re.findall(r'[0-255].[0-255].[0-255].[0-255]', only_name) == 0:
+            only_name = only_name.replace('.', '[dot]')
+        filename = only_name + ".csv"
         scp.get(path, os.getcwd() + '/SCP/' + filename)
         if os.stat(os.getcwd() + '/SCP/' + filename).st_size == 0:
             os.remove(os.getcwd() + '/SCP/' + filename)  # zero length file
