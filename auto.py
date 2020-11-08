@@ -53,14 +53,24 @@ if __name__ == "__main__":
     for file_name in files:
         path = "" + file_name  # place the FOLDER path that you want copied
         only_name = path.split('/')[-1]
-        if re.findall(r'[0-255].[0-255].[0-255].[0-255]', only_name) == 0:
-            only_name = only_name.replace('.', '[dot]')
         filename = only_name + ".csv"
         scp.get(path, os.getcwd() + '/SCP/' + filename)
         if os.stat(os.getcwd() + '/SCP/' + filename).st_size == 0:
             os.remove(os.getcwd() + '/SCP/' + filename)  # zero length file
             continue
         local_files.append(os.getcwd() + '/SCP/' + filename)
+    for lf in local_files:  # reading each files saved locally
+        fData = open(lf, mode='r', encoding='utf-8').read().split('\n')
+        open(lf, mode='w+', encoding='utf-8').close()  # clear the file
+        for da in fData:  # looping over each lines and applying rules
+            if re.findall(r'[0-255].[0-255].[0-255].[0-255]', da) == 0:  # not an ip
+                with open(lf, mode='a+', encoding='utf-8') as nf:
+                    da = da.replace('.', '[dot]')
+                    nf.write(da + "\n")
+            else:  # is an ip address, save unchanged
+                with open(lf, mode='a+', encoding='utf-8') as nf:
+                    nf.write(da + "\n")
+
     sendEmail(local_files)
     scp.close()
     for file_name in files:
